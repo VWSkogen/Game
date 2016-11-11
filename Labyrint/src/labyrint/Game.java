@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Labyrint;
+package labyrint;
 
 
 
 public class Game 
 { 
-    public static void main(String[] args)
+    /*public static void main(String[] args)
     {
         game(10,10);
     }
@@ -19,7 +19,7 @@ public class Game
     {
         Labyrint.main();
         
-    }
+    }*/
     
     
 }

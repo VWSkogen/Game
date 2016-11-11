@@ -51,9 +51,9 @@ public class AreaMap
             this.Playerpos[1]=0;
             
             
-            map[9][8].setBackground(Color.blue);
-            this.Goalpos[0]=9;
-            this.Goalpos[1]=8;
+            map[map.length-1][map[0].length-1].setBackground(Color.blue);
+            this.Goalpos[0]=map.length-1;
+            this.Goalpos[1]=map[0].length-1;
             
             
     }

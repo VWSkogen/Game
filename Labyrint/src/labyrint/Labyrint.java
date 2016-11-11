@@ -20,8 +20,8 @@ import javax.swing.KeyStroke;
  */
 public class Labyrint
 {
-    static AreaMap test = new AreaMap(19,19);
-    
+    static AreaMap test = new AreaMap(35,35);
+    static JFrame gui = new JFrame("Labyrinth");
     
     /**
      * @param args the command line arguments
@@ -31,7 +31,7 @@ public class Labyrint
         
         
 
-        JFrame gui = new JFrame("Labyrinth");
+        
         gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         int startpos=0;
@@ -60,7 +60,7 @@ public class Labyrint
         component.getActionMap().put("move right",new MoveAction('r') );
         component.getActionMap().put("move up",new MoveAction('u') );
         gui.add(component);
-
+        
     }
     private static class MoveAction extends AbstractAction
     {
@@ -75,7 +75,7 @@ public class Labyrint
         {
             int oldX = test.Playerpos[0];
             int oldY = test.Playerpos[1];
-            
+            gui.repaint();
             switch (this.dir)
             {
                 case 'u':
@@ -88,7 +88,7 @@ public class Labyrint
                     if (oldY >0 )
                     {
                         // if the new position is black, don't do anything
-                        if (test.map[oldX][oldY-1].getBackground() == Color.white)
+                        if (test.map[oldX][oldY-1].getBackground() != Color.black)
                         {
                             int newX = oldX;
                             int newY = oldY-1;
@@ -96,6 +96,7 @@ public class Labyrint
                             test.map[newX][newY].setBackground(Color.red);
                             test.Playerpos[0]=newX;
                             test.Playerpos[1]=newY;
+                            
                             
                             System.out.println(newX +","+newY);
                         }
@@ -112,7 +113,7 @@ public class Labyrint
                     // Check if attempted move is valid
                     if (oldX > 0)
                     {
-                        if (test.map[oldX-1][oldY].getBackground() == Color.white)
+                        if (test.map[oldX-1][oldY].getBackground() != Color.black)
                         {
                             int newX = oldX-1;
                             int newY = oldY;
@@ -135,7 +136,7 @@ public class Labyrint
                     
                     if (oldY < test.map[oldX].length-1)
                     {
-                        if (test.map[oldX][oldY+1].getBackground() == Color.white)
+                        if (test.map[oldX][oldY+1].getBackground() != Color.black)
                         {
                             int newX=oldX, newY=oldY+1;
                             test.map[oldX][oldY].setBackground(Color.white);
@@ -145,6 +146,8 @@ public class Labyrint
                             
                             System.out.println(newX +","+newY);
                         }
+                        else
+                            System.out.println("Something went wrong");
                     }
                     else
                         System.out.println("You are at the border");
@@ -156,7 +159,7 @@ public class Labyrint
                     // right -> x++
                     if (oldX < test.map.length-1)
                     {
-                        if (test.map[oldX+1][oldY].getBackground() == Color.white)
+                        if (test.map[oldX+1][oldY].getBackground() != Color.black)
                         {
                             int newX = oldX+1, newY = oldY;
                             test.map[oldX][oldY].setBackground(Color.white);
