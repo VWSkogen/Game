@@ -44,6 +44,9 @@ public class Labyrint
             }
         }
         
+        
+        
+        
         gui.setBackground(Color.white);
         //gui.setUndecorated(true);
         gui.setSize(new Dimension((test.map[0].length*15)+15, (test.map.length*15)+40));

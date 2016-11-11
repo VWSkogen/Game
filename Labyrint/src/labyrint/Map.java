@@ -43,19 +43,14 @@ public class Map
         
         // Division
         
-        int xdiv=ThreadLocalRandom.current().
-                nextInt(minX,((maxX+1)-1)/2)*2+1;
-        if (xdiv%2==0 && maxX-xdiv>0)
-            xdiv++;
-        else if (xdiv%2==0 && xdiv-minX>0)
-            xdiv--;
         
-       /*int xdiv=ThreadLocalRandom.current().
+       int xdiv=ThreadLocalRandom.current().
                 nextInt(minX,(maxX+1));
+        
         if (xdiv%2==0 && maxX-xdiv>0)
             xdiv++;
         else if (xdiv%2==0 && xdiv-maxX>0)
-            xdiv--;*/
+            xdiv--;
         
         
         
@@ -63,26 +58,52 @@ public class Map
         
         
         int ydiv=ThreadLocalRandom.current().
-                nextInt(minY,((maxY+1)));
+                nextInt(minY,(maxY+1));
         if (ydiv%2==0 && maxY-ydiv>0)
             ydiv++;
         else if (ydiv%2==0 && ydiv-minY>0)
             ydiv--;
         
         System.out.println("xdiv:"+xdiv+"\tydiv:"+ydiv);
+
         
         
-        
-        System.out.println(xdiv+"\t"+ydiv);
+        // Draw horizontal wall
         for (int n = minY; n <=maxY; n++)
         {
+
             map[xdiv][n]='w';
         }
+        
+        // Ensure that new walls does not block previous openings
+        if (minY>0 && map[xdiv][minY-1]=='e')
+        {
+            map[xdiv][minY]='e';
+        }
+        if (maxY<map[xdiv].length-1 && map[xdiv][maxY+1]=='e')
+        {
+            map[xdiv][maxY]='e';
+            
+        }
+        
+        // Draw horizontal wall
         for (int n = minX; n <= maxX; n++)
         {
             map[n][ydiv]='w';
         }
+        // Ensure that new walls does not block previous openings
+        if (minX>0 && map[minX-1][ydiv]=='e')
+        {
+            map[minX][ydiv]='e';
+            System.out.println("Correcting blockade");
+        }
+        if (maxX<map.length-1 && map[maxX+1][ydiv]=='e')
+        {
+            map[maxX][ydiv]='e';
+            System.out.println("Correcting blockade");
+        }
         
+        // Print the charmap
         for (int n = 0; n<maxX; n++)
         {
             for (int i = 0 ; i<maxY; i++)
@@ -91,6 +112,12 @@ public class Map
             }
             System.out.println("");
         }
+        
+        
+        
+        
+        
+        
         // Decide which wall not to open
         int exception = ThreadLocalRandom.current().
                 nextInt(0,3+1);
@@ -106,7 +133,7 @@ public class Map
         int _open = ThreadLocalRandom.current().nextInt(0, 3+1);
         for (int n=0; n<4; n++)
         {
-            if (n!=_open)
+            //if (n!=_open)
             {
                 switch (n)
                 {
@@ -146,7 +173,7 @@ public class Map
                 if (xdiv-1-minX > 2)
                 {
                     // North
-                    if (ydiv-1-minY >=2 && ydiv -minY > 1)
+                    if (ydiv-1-minY >2 && ydiv -minY > 1)
                     {
                         divide (minX, minY, xdiv-1, ydiv-1);
                     }
@@ -160,11 +187,11 @@ public class Map
                 {
                     if (ydiv-1-minY >2)
                     {
-                        //divide (xdiv+1, minY, maxX, ydiv-1);
+                        divide (xdiv+1, minY, maxX, ydiv-1);
                     }
                     if (maxY-ydiv+1 > 2)
                     {
-                        //divide (xdiv+1, ydiv+1, maxX, maxY);
+                        divide (xdiv+1, ydiv+1, maxX, maxY);
                     }
                 }
         
