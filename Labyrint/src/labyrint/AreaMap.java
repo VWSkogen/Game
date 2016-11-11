@@ -26,12 +26,12 @@ public class AreaMap
         charmap = new Map(x,y);
         
         map= new JTextArea[x][y];
-        setup(new char[2][2]);
+        setup();
         
         
     }
     
-    private void setup(char[][] nil)
+    private void setup()
     {
         for (int n = 0; n<charmap.map.length; n++)
         {
@@ -51,11 +51,13 @@ public class AreaMap
             this.Playerpos[1]=0;
             
             
-            map[map.length-1][map[0].length-1].setBackground(Color.blue);
+        map[map.length-1][map[0].length-1].setBackground(Color.blue);
             this.Goalpos[0]=map.length-1;
             this.Goalpos[1]=map[0].length-1;
             
-            
+        
+        
+        
     }
     
     
@@ -75,14 +77,14 @@ public class AreaMap
                 map1[i].setText("");
             }
         }
-        setup();
+        setuptest();
         
         
     }
     
     
         // Takes default char-map and turns it into graphical map
-        private void setup()
+        private void setuptest()
         {
             
             char[][] examplemap = {

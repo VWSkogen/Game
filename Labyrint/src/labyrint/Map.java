@@ -47,9 +47,9 @@ public class Map
        int xdiv=ThreadLocalRandom.current().
                 nextInt(minX,(maxX+1));
         
-        if (xdiv%2==0 && maxX-xdiv>0)
+        if (xdiv%2==0 && maxX-xdiv>1)
             xdiv++;
-        else if (xdiv%2==0 && xdiv-maxX>0)
+        else if (xdiv%2==0 && xdiv-minX>1)
             xdiv--;
         
         
@@ -173,11 +173,11 @@ public class Map
                 if (xdiv-1-minX > 2)
                 {
                     // North
-                    if (ydiv-1-minY >2 && ydiv -minY > 1)
+                    if (ydiv-1-minY >2)
                     {
                         divide (minX, minY, xdiv-1, ydiv-1);
                     }
-                    if (maxY-ydiv+1 > 2 && maxY-ydiv+1>1)
+                    if (maxY-ydiv+1 > 2 )
                     {
                         divide (minX, ydiv+1, xdiv-1, maxY);
                     }

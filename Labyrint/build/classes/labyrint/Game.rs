@@ -1,2 +1,0 @@
-Labyrint.Game
-Game

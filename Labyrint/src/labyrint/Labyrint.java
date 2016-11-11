@@ -8,9 +8,12 @@ package labyrint;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.AbstractAction;
+import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
+import javax.swing.JTextArea;
 import javax.swing.KeyStroke;
 
 
@@ -34,22 +37,38 @@ public class Labyrint
         
         gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        int startpos=0;
+        
         for (int n=0; n<test.map.length; n++)
         {
             for (int i=0; i<test.map[0].length; i++)
             {
-                test.map[n][i].setBounds(15*n, 15*i, 15, 15);
+                test.map[n][i].setBounds(15*n+20, (15*i)+20, 15, 15);
                 gui.add(test.map[n][i]);
+                
             }
         }
         
+        JTextArea nfiller = new JTextArea();
+        nfiller.setBounds(0, 0, test.map.length*16, 20);
+        nfiller.setBackground(Color.black);
+        nfiller.setEditable(false);
+        gui.add(nfiller);
         
+        JTextArea wfiller = new JTextArea();
+        wfiller.setBounds(0, 0,0 , test.map[0].length*20);
+        wfiller.setBackground(Color.black);
+        wfiller.setEditable(false);
+        gui.add(wfiller);
         
+        JTextArea efiller = new JTextArea();
+        efiller.setBounds(20+test.map.length*15, 0, 20, test.map[0].length*15);
+        efiller.setBackground(Color.black);
+        efiller.setEditable(false);
+        gui.add(efiller);
         
-        gui.setBackground(Color.white);
         //gui.setUndecorated(true);
-        gui.setSize(new Dimension((test.map[0].length*15)+15, (test.map.length*15)+40));
+        
+        gui.setSize(new Dimension((test.map[0].length*15)+55,(test.map.length*15)+39+40));
         gui.setVisible(true);
         final int IFW = JComponent.WHEN_IN_FOCUSED_WINDOW;
         JComponent component = new JComponent() {};
@@ -62,6 +81,11 @@ public class Labyrint
         component.getActionMap().put("move left",new MoveAction('l') );
         component.getActionMap().put("move right",new MoveAction('r') );
         component.getActionMap().put("move up",new MoveAction('u') );
+        
+        
+        
+        
+        gui.setResizable(false);
         gui.add(component);
         
     }
@@ -179,6 +203,8 @@ public class Labyrint
                     System.out.println("Not recognized");
             }
         }
+        
+        
     }
 
     
