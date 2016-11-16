@@ -202,6 +202,47 @@ public class Labyrint
                 default:
                     System.out.println("Not recognized");
             }
+            
+            
+            for (int n = 0; n<test.map.length; n++)
+            {
+                for (int i = 0; i<test.map[0].length; i++)
+                {
+                    
+                    
+                    
+                    
+                    
+                    // if within viewarea
+                    if (n>test.Playerpos[0]-4 && n<test.Playerpos[0]+4
+                            && i>test.Playerpos[1]-4 && i<test.Playerpos[1]+4)
+                    {
+                        
+                        if (test.charmap.map[n][i]=='e')
+                        {
+                            
+                            // Must be an OR, lest it win't update adjecantly
+                            // to the player
+                            if (n!=test.Playerpos[0] || i!=test.Playerpos[1])
+                            
+                            
+                            
+                                test.map[n][i].setBackground(Color.white);
+                                    
+                        }
+                        else
+                            test.map[n][i].setBackground(Color.black);
+                    }
+                    // if outside
+                    else
+                    {
+                            test.map[n][i].setBackground(Color.black);
+                            }
+                }
+            }
+            
+            
+            
         }
         
         
